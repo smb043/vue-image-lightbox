@@ -112,16 +112,16 @@ export default {
     },
 
     select() {
-      if (this.select >= this.images.length - this.lengthToLoadMore - 1) 
+      if (this.select >= this.images.length - this.lengthToLoadMore - 1)
         this.$emit('onLoad')
 
-      if (this.select === this.images.length - 1) 
+      if (this.select === this.images.length - 1)
         this.$emit('onLastIndex')
 
-      if (this.select === 0) 
+      if (this.select === 0)
         this.$emit('onFirstIndex')
 
-      if (this.select === this.startAt) 
+      if (this.select === this.startAt)
         this.$emit('onStartIndex')
     },
   },
@@ -135,15 +135,17 @@ export default {
 
     this.onToggleLightBox(this.lightBoxOn)
 
-    const hammer = new Hammer(this.$refs.container)
+    if (this.$refs.container) {
+      const hammer = new Hammer(this.$refs.container)
 
-    hammer.on('swiperight', () => {
-      this.previousImage()
-    })
+      hammer.on('swiperight', () => {
+        this.previousImage()
+      })
 
-    hammer.on('swipeleft', () => {
-      this.nextImage()
-    })
+      hammer.on('swipeleft', () => {
+        this.nextImage()
+      })
+    }
   },
 
   methods: {
