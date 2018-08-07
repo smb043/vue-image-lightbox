@@ -8,10 +8,10 @@
     <div class="vue-lb-content">
       <div class="vue-lb-header">
         <span></span>
-        <button 
-          type="button" 
-          title="Close (Esc)" 
-          class="vue-lb-button-close" 
+        <button
+          type="button"
+          title="Close (Esc)"
+          class="vue-lb-button-close"
         >
           <span>
             <svg fill="white" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
@@ -21,24 +21,40 @@
         </button> <!-- .vue-lb-button-close -->
 
       </div> <!-- .vue-lb-header -->
-      <div 
+      <div
         class="vue-lb-figure"
         @click.stop
       >
-        <transition 
-          mode="out-in" 
-          name="fade"
-        >
-          <img 
+
+        <template v-if="enableTransition">
+
+          <transition
+            :mode="transitionMode"
+            :name="transitionName"
+          >
+            <img
+              :key="images[select].src"
+              :src="images[select].src"
+              :srcset="images[select].srcset || ''"
+              class="vue-lb-modal-image"
+            >
+          </transition>
+
+        </template>
+
+        <template v-else>
+
+          <img
             :key="images[select].src"
             :src="images[select].src"
             :srcset="images[select].srcset || ''"
             class="vue-lb-modal-image"
           >
-        </transition>
 
-        <div 
-          class="vue-lb-info" 
+        </template>
+
+        <div
+          class="vue-lb-info"
           v-html="images[select].caption"
           v-show="showCaption"
         ></div>
@@ -47,18 +63,18 @@
           <div class="vue-lb-footer-info"></div>
           <div class="vue-lb-footer-count">
             {{ select + 1 }}/{{ images.length }}
-          </div> 
-        </div> 
+          </div>
+        </div>
 
-      </div> 
+      </div>
     </div> <!-- .vue-lb-content -->
     <div class="vue-lb-thumbnail-wrapper">
     <div v-if="showThumbs" class="vue-lb-thumbnail">
-      <button 
+      <button
         v-if="images.length > 1"
-        type="button" 
-        class="vue-lb-thumbnail-arrow vue-lb-thumbnail-left" 
-        title="Previous" 
+        type="button"
+        class="vue-lb-thumbnail-arrow vue-lb-thumbnail-left"
+        title="Previous"
         @click.stop="previousImage()"
       >
         <span>
@@ -68,21 +84,21 @@
         </span>
       </button>
 
-      <div 
-        v-for="(image, index) in imagesThumb" 
+      <div
+        v-for="(image, index) in imagesThumb"
         :key="index"
-        :class="'vue-lb-modal-thumbnail' + (select === index ? '-active' : '')" 
+        :class="'vue-lb-modal-thumbnail' + (select === index ? '-active' : '')"
         v-lazy:background-image="image"
         v-show="index >= thumbIndex.begin && index <= thumbIndex.end"
         @click.stop="showImage(index)"
       >
       </div>
 
-      <button 
+      <button
         v-if="images.length > 1"
-        type="button" 
-        class="vue-lb-thumbnail-arrow vue-lb-thumbnail-right" 
-        title="Next" 
+        type="button"
+        class="vue-lb-thumbnail-arrow vue-lb-thumbnail-right"
+        title="Next"
         @click.stop="nextImage()"
       >
         <span>
@@ -93,11 +109,11 @@
       </button>
     </div> <!-- .vue-lb-thumbnail -->
     </div>
-    <button 
+    <button
       v-if="images.length > 1"
-      type="button" 
-      class="vue-lb-arrow vue-lb-left" 
-      title="Previous" 
+      type="button"
+      class="vue-lb-arrow vue-lb-left"
+      title="Previous"
       @click.stop="previousImage()"
     >
       <span>
@@ -107,11 +123,11 @@
       </span>
     </button>
 
-    <button 
+    <button
       v-if="images.length > 1"
-      type="button" 
-      class="vue-lb-arrow vue-lb-right" 
-      title="Next" 
+      type="button"
+      class="vue-lb-arrow vue-lb-right"
+      title="Next"
       @click.stop="nextImage()"
     >
       <span>
@@ -120,5 +136,5 @@
         </svg>
       </span>
     </button>
-  </div> <!-- .vue-lb-container --> 
+  </div> <!-- .vue-lb-container -->
 </div>

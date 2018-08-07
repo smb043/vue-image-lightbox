@@ -59,6 +59,19 @@ export default {
       type: Number,
       default: 0
     },
+
+    enableTransition: {
+      type: Boolean,
+      default: false,
+    },
+    transitionName: {
+      type: String,
+      default: 'fade',
+    },
+    transitionMode: {
+      type: String,
+      default: 'out-in',
+    },
   },
 
   data() {
