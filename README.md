@@ -155,6 +155,24 @@ How to use:
       <td>0</td>
       <td>Minimum length unto end to emit load more event</td>
     </tr>
+    <tr>
+      <td>enableTransition</td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td>Enable transition</td>
+    </tr>
+    <tr>
+      <td>transitionName</td>
+      <td>String</td>
+      <td>fade</td>
+      <td>Transition name if enabled</td>
+    </tr>
+    <tr>
+      <td>transitionMode</td>
+      <td>String</td>
+      <td>out-in</td>
+      <td>Transition mode if enabled</td>
+    </tr>
   </tbody>
 </table>
 
@@ -205,6 +223,6 @@ Most of the CSS belongs to [react-images](https://github.com/jossmac/react-image
 
 ### Contributors:
 - [@imcvampire](https://github.com/imcvampire)
-- [@krystalcampioni](https://github.com/krystalcampioni) 
+- [@krystalcampioni](https://github.com/krystalcampioni)
 - [@jstr14](https://github.com/jstr14)
 - [@PedroBatista333](https://github.com/PedroBatista333)
